@@ -48,7 +48,7 @@ The save file only has a reference to the preset *names*. So changing a **brush*
 
 # Download
 
-* [ZIP PET - v0.1](https://github.com/daishishi/PluginEraserTool/releases/download/v0.1/kritaPET-v0.1.zip)
+* [ZIP PET - v0.1](https://github.com/daishishi/PluginEraserTool/releases/download/v0.1.1/kritaPET-v.0.1.1.zip)
 
 # Installation
 
