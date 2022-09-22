@@ -50,7 +50,7 @@ The save file only has a reference to the preset *names*. So changing a **brush*
 
 * [ZIP PET - v0.1](https://github.com/daishishi/PluginEraserTool)
 
-# Instalation
+# Installation
 
 Plugin installation in Krita is not intuitive and needs some manipulation:
 
