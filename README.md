@@ -48,7 +48,7 @@ The save file only has a reference to the preset *names*. So changing a **brush*
 
 # Download
 
-* [ZIP PET - v0.1](https://github.com/daishishi/PluginEraserTool/releases/download/v0.1.1/kritaPET-v.0.1.1.zip)
+* [ZIP PET - v0.1.1](https://github.com/daishishi/PluginEraserTool/releases/download/v0.1.1/kritaPET-v.0.1.1.zip)
 
 # Installation
 
@@ -56,7 +56,7 @@ Plugin installation in Krita is not intuitive and needs some manipulation:
 
 1. Open Krita and go to Tools -> Scripts -> Import Python Plugins... and select the kritaPET.zip archive and let the software handle it.
 2. Restart Krita
-3. To enable Eraser Tool go to Settings -> Configure Krita... -> Python Plugin Manager and click the checkbox to the left of the field that says Eraser Tool.
+3. To enable Eraser Tool go to Settings -> Configure Krita... -> Python Plugin Manager and click the checkbox to the left of the field that says Plugin as Eraser Tool.
 4. Restart Krita
 
 *Installation steps adapted from [BuliBrushSwitch](https://github.com/Grum999/BuliBrushSwitch)*
