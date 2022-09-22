@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ActionCollection version="2" name="Scripts">
+    <Actions category="Scripts">
+        <text>Eraser Tool</text>
+
+        <Action name="activate_slot_brush">
+        <icon></icon>
+        <text>Activate Brush Last</text>
+        <whatsThis></whatsThis>
+        <toolTip></toolTip>
+        <iconText></iconText>
+        <activationFlags>10000</activationFlags>
+        <activationConditions>0</activationConditions>
+        <shortcut>ctrl+alt+shift+p</shortcut>
+        <isCheckable>false</isCheckable>
+        <statusTip></statusTip>
+			</Action>
+
+			<Action name="activate_slot_eraser">
+			<icon></icon>
+			<text>Activate Brush Last</text>
+			<whatsThis></whatsThis>
+			<toolTip></toolTip>
+			<iconText></iconText>
+			<activationFlags>10000</activationFlags>
+			<activationConditions>0</activationConditions>
+			<shortcut>ctrl+alt+shift+o</shortcut>
+			<isCheckable>false</isCheckable>
+			<statusTip></statusTip>
+		</Action>
+
+		<Action name="update_preset_list">
+		<icon></icon>
+		<text>Update Brush List</text>
+		<whatsThis></whatsThis>
+		<toolTip></toolTip>
+		<iconText></iconText>
+		<activationFlags>10000</activationFlags>
+		<activationConditions>0</activationConditions>
+		<shortcut>ctrl+alt+shift+a</shortcut>
+		<isCheckable>false</isCheckable>
+		<statusTip></statusTip>
+	</Action>
+    		</Actions>
+</ActionCollection>
