@@ -9,7 +9,7 @@
         <whatsThis></whatsThis>
         <toolTip></toolTip>
         <iconText></iconText>
-        <activationFlags>10000</activationFlags>
+        <activationFlags></activationFlags>
         <activationConditions>0</activationConditions>
         <shortcut>ctrl+alt+shift+p</shortcut>
         <isCheckable>false</isCheckable>
@@ -22,7 +22,7 @@
 			<whatsThis></whatsThis>
 			<toolTip></toolTip>
 			<iconText></iconText>
-			<activationFlags>10000</activationFlags>
+			<activationFlags></activationFlags>
 			<activationConditions>0</activationConditions>
 			<shortcut>ctrl+alt+shift+o</shortcut>
 			<isCheckable>false</isCheckable>
@@ -35,7 +35,7 @@
 		<whatsThis></whatsThis>
 		<toolTip></toolTip>
 		<iconText></iconText>
-		<activationFlags>10000</activationFlags>
+		<activationFlags></activationFlags>
 		<activationConditions>0</activationConditions>
 		<shortcut>ctrl+alt+shift+a</shortcut>
 		<isCheckable>false</isCheckable>
