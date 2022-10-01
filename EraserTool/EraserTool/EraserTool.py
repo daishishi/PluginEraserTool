@@ -1,24 +1,3 @@
-#-----------------------------------------------------------------------------
-# PluginEraserTool
-# Copyright (C) 2022 - Daishishi
-# -----------------------------------------------------------------------------
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-# See the GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.
-# If not, see https://www.gnu.org/licenses/
-# -----------------------------------------------------------------------------
-# A Krita plugin created to mimick a dedicated Eraser Tool
-# -----------------------------------------------------------------------------
-
 from krita import *
 import os
 import json
@@ -61,7 +40,7 @@ class EraserTool(krita.Extension):
 
 	def createActions(self, window):
 		self.newActions(window)
-		# Trying access Krita's internal resources earlier than this function
+		# Trying to access Krita's internal resources earlier than this function
 		# leads to errors. So reading / creating the brushes list was put here.
 		if not self.readSettings():
 			self.updateBrushList()
@@ -71,6 +50,7 @@ class EraserTool(krita.Extension):
 
 	def readSettings(self):
 
+		allPresetName = list(Application.resources('preset').keys())
 		jsonDict = None
 
 		if os.path.isfile(self.presetsFile):
@@ -93,20 +73,23 @@ class EraserTool(krita.Extension):
 		for key in jsonDict:
 			if key == "LastBrush":
 				presetName = jsonDict[key]
-				if presetName:
+				if presetName in allPresetName:
 					self.brush = Application.resources('preset')[presetName]
 				else:
 					firstBrush = "b) Basic-1"
 					self.brush = Application.resources('preset')[firstBrush]
+
 			elif key == "LastEraser":
 				presetName = jsonDict[key]
-				if presetName:
+				if presetName in allPresetName:
 					self.eraser = Application.resources('preset')[presetName]
 				else:
 					firstEraser = "a) Eraser Circle"
 					self.eraser = Application.resources('preset')[firstEraser]
+
 			elif key == 'Brushes':
 				self.brushList = jsonDict[key]
+
 			elif key == 'Erasers':
 				self.eraserList = jsonDict[key]
 
@@ -157,10 +140,12 @@ class EraserTool(krita.Extension):
 	def saveSettings(self):
 		lastBrush = self.brush
 		lastEraser = self.eraser
+
 		if lastBrush:
 			lastBrush = self.brush.name()
 		if lastEraser:
 			lastEraser = self.eraser.name()
+
 		x = {
 			"LastBrush" : lastBrush,
 			"LastEraser" : lastEraser,
@@ -205,6 +190,9 @@ class EraserTool(krita.Extension):
 		qwin = Krita.instance().activeWindow().qwindow()
 		obj1 = qwin.findChild(QWidget, 'ResourceChooser')
 		obj2 = obj1.findChild(QListView,'ResourceItemview')
-		obj2.currentResourceChanged.disconnect()
+		try:
+			obj2.currentResourceChanged.disconnect(self.changeResource)
+		except Exception as e:
+			print('UI not connected')
 
 		obj2.currentResourceChanged.connect(self.changeResource)
