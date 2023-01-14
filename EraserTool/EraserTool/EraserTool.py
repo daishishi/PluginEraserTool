@@ -187,8 +187,15 @@ class EraserTool(krita.Extension):
 
 
 	def connecting(self):
+		presetDockerNames = ['ResourceChooser','wdgPresetChooser']
 		qwin = Krita.instance().activeWindow().qwindow()
-		obj1 = qwin.findChild(QWidget, 'ResourceChooser')
+		for name in presetDockerNames:
+			obj1 = qwin.findChild(QWidget, name)
+			if not obj1:
+				continue
+			else: break
+		if not obj1: return
+		
 		obj2 = obj1.findChild(QListView,'ResourceItemview')
 		try:
 			obj2.currentResourceChanged.disconnect(self.changeResource)
