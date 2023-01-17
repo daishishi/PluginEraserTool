@@ -1,4 +1,5 @@
 from krita import *
+from PyQt5.QtWidgets import QMessageBox
 import os
 import json
 import xml.etree.ElementTree as ET
@@ -186,6 +187,13 @@ class EraserTool(krita.Extension):
 		#print(self.eraser)
 
 
+	def errorMessage(self, message):
+		newDialog = QMessageBox()
+		newDialog.setWindowTitle("Initializing error")
+		newDialog.setText(message)
+		newDialog.exec_()
+
+
 	def connecting(self):
 		presetDockerNames = ['ResourceChooser','wdgPresetChooser']
 		qwin = Krita.instance().activeWindow().qwindow()
@@ -194,12 +202,17 @@ class EraserTool(krita.Extension):
 			if not obj1:
 				continue
 			else: break
-		if not obj1: return
+		if not obj1:
+			self.errorMessage("The Brush Docker wasn't found.\nPlease, contact the developer.")
+			return
 		
-		obj2 = obj1.findChild(QListView,'ResourceItemview')
 		try:
+			obj2 = obj1.findChild(QListView,'ResourceItemview')
 			obj2.currentResourceChanged.disconnect(self.changeResource)
 		except Exception as e:
 			print('UI not connected')
 
+		if not obj2:
+			self.errorMessage("The Brushes inside the Docker couldn't be found.\nPlease, contact the developer.")
+			return
 		obj2.currentResourceChanged.connect(self.changeResource)
