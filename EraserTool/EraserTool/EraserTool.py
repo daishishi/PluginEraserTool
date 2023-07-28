@@ -119,7 +119,18 @@ class EraserTool(krita.Extension):
 
 		for preset in allBrushes.keys():
 			brushXML = Preset(allBrushes[preset]).toXML()
-			brushParsed = ET.fromstring(brushXML)
+			#brushParsed = ET.fromstring(brushXML)
+			
+			try:
+				brushParsed = ET.fromstring(brushXML)
+			except Exception:
+				cleanBrushXML = ''
+				for key in brushXML:
+					if not key.isprintable():
+						continue
+					cleanBrushXML += key
+				brushParsed = ET.fromstring(cleanBrushXML)
+			
 			BlendMode = None
 			EraserMode = None
 
