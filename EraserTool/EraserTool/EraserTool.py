@@ -1,5 +1,6 @@
 from krita import *
 from PyQt5.QtWidgets import QMessageBox
+from enum import Enum
 import os
 import json
 import xml.etree.ElementTree as ET
@@ -8,11 +9,14 @@ import xml.etree.ElementTree as ET
 class EraserTool(krita.Extension):
 	def __init__(self, parent):
 		super(EraserTool, self).__init__(parent)
-		self.brushList = []
-		self.eraserList = []
-		self.brush = None
-		self.eraser = None
-		self.presetsFile = os.path.join(QStandardPaths.writableLocation(QStandardPaths.GenericConfigLocation), 'pet-Presets.json')
+
+		self.brushList : list = []
+		self.eraserList : list = []
+		self.brush : str = None
+		self.eraser : str = None
+		self.enumBrush : Enum = Enum('enumBrush', ['Brush', 'Eraser'])
+		self.brushState : Enum = self.enumBrush.Brush
+		self.presetsFile : str = os.path.join(QStandardPaths.writableLocation(QStandardPaths.GenericConfigLocation), 'pet-Presets.json')
 
 
 	def changeResource(self):
@@ -23,14 +27,18 @@ class EraserTool(krita.Extension):
 			return
 
 		if self.brush and self.brush.name() == currentPreset.name():
+			self.brushState = self.enumBrush.Brush
 			return
 		elif self.eraser and self.eraser.name() == currentPreset.name():
+			self.brushState = self.enumBrush.Eraser
 			return
 
 		if currentPreset.name() in self.brushList:
+			self.brushState = self.enumBrush.Brush
 			self.brush = currentPreset
 			#print(currentPreset)
 		elif currentPreset.name() in self.eraserList:
+			self.brushState = self.enumBrush.Eraser
 			self.eraser = currentPreset
 			#print(currentPreset)
 
@@ -178,6 +186,8 @@ class EraserTool(krita.Extension):
 		action2.triggered.connect(self.selectEraser)
 		action3 = window.createAction("update_preset_list", "update preset list", "")
 		action3.triggered.connect(self.updateBrushList)
+		action4 = window.createAction("swap_slot", "swap slot", "")
+		action4.triggered.connect(self.swapSlot)
 
 
 	def selectBrush(self):
@@ -185,9 +195,7 @@ class EraserTool(krita.Extension):
 		currentView = Application.activeWindow().activeView()
 		if self.brush:
 			currentView.setCurrentBrushPreset(self.brush)
-		else:
-			pass
-		#print(self.brush)
+			self.brushState = self.enumBrush.Brush
 
 
 	def selectEraser(self):
@@ -195,7 +203,17 @@ class EraserTool(krita.Extension):
 		currentView = Application.activeWindow().activeView()
 		if self.eraser:
 			currentView.setCurrentBrushPreset(self.eraser)
-		#print(self.eraser)
+			self.brushState = self.enumBrush.Eraser
+
+
+	def swapSlot(self):
+		Application.action("KritaShape/KisToolBrush").trigger()
+		currentView = Application.activeWindow().activeView()
+		# Check which slot is active, using Enums, then swap to the other slot.
+		if self.brushState == self.enumBrush.Eraser:
+			self.selectBrush()
+		else:
+			self.selectEraser()
 
 
 	def errorMessage(self, message):
