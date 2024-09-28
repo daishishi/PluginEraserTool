@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ActionCollection version="2" name="Scripts">
-    <Actions category="Scripts">
-        <text>Eraser Tool</text>
+	<Actions category="Scripts">
+		<text>Eraser Tool</text>
 
-        <Action name="activate_slot_brush">
-        <icon></icon>
-        <text>Activate Brush Last</text>
-        <whatsThis></whatsThis>
-        <toolTip></toolTip>
-        <iconText></iconText>
-        <activationFlags></activationFlags>
-        <activationConditions>0</activationConditions>
-        <shortcut>ctrl+alt+shift+p</shortcut>
-        <isCheckable>false</isCheckable>
-        <statusTip></statusTip>
-			</Action>
+		<Action name="activate_slot_brush">
+			<icon></icon>
+			<text>Activate Brush Last</text>
+			<whatsThis></whatsThis>
+			<toolTip></toolTip>
+			<iconText></iconText>
+			<activationFlags></activationFlags>
+			<activationConditions>0</activationConditions>
+			<shortcut>ctrl+alt+shift+p</shortcut>
+			<isCheckable>false</isCheckable>
+			<statusTip></statusTip>
+		</Action>
 
-			<Action name="activate_slot_eraser">
+		<Action name="activate_slot_eraser">
 			<icon></icon>
 			<text>Activate Brush Last</text>
 			<whatsThis></whatsThis>
@@ -29,17 +29,30 @@
 			<statusTip></statusTip>
 		</Action>
 
+		<Action name="swap_slot">
+			<icon></icon>
+			<text>Change between eraser/brush slot</text>
+			<whatsThis></whatsThis>
+			<toolTip></toolTip>
+			<iconText></iconText>
+			<activationFlags></activationFlags>
+			<activationConditions>0</activationConditions>
+			<shortcut>ctrl+alt+shift+i</shortcut>
+			<isCheckable>false</isCheckable>
+			<statusTip></statusTip>
+		</Action>
+
 		<Action name="update_preset_list">
-		<icon></icon>
-		<text>Update Brush List</text>
-		<whatsThis></whatsThis>
-		<toolTip></toolTip>
-		<iconText></iconText>
-		<activationFlags></activationFlags>
-		<activationConditions>0</activationConditions>
-		<shortcut>ctrl+alt+shift+a</shortcut>
-		<isCheckable>false</isCheckable>
-		<statusTip></statusTip>
-	</Action>
-    		</Actions>
+			<icon></icon>
+			<text>Update Brush List</text>
+			<whatsThis></whatsThis>
+			<toolTip></toolTip>
+			<iconText></iconText>
+			<activationFlags></activationFlags>
+			<activationConditions>0</activationConditions>
+			<shortcut>ctrl+alt+shift+a</shortcut>
+			<isCheckable>false</isCheckable>
+			<statusTip></statusTip>
+		</Action>
+	</Actions>
 </ActionCollection>
